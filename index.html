@@ -20,15 +20,6 @@
       --max-width: 1040px;
       --header-offset: 88px;
     }
-    [data-theme="light"] {
-      --bg: #f3f6ff;
-      --text: #0f172a;
-      --muted: #475569;
-      --primary: #4f46e5;
-      --primary-strong: #0284c7;
-      --card: #ffffff;
-      --border: #c7d2fe;
-    }
     * { box-sizing: border-box; }
     html {
       scroll-behavior: smooth;
@@ -68,29 +59,16 @@
       backdrop-filter: blur(8px);
     }
     .nav-bar {
-      min-height: 70px;
+      min-height: 58px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
+      gap: 12px;
     }
     .brand { color: var(--text); font-weight: 800; text-decoration: none; }
-    nav { display: flex; gap: 18px; flex-wrap: wrap; }
-    nav a { color: var(--muted); text-decoration: none; font-weight: 500; }
+    nav { display: flex; gap: 14px; flex-wrap: wrap; }
+    nav a { color: var(--muted); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
     nav a:hover { color: var(--text); }
-
-    .theme-toggle {
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--text);
-      border-radius: 999px;
-      font-family: inherit;
-      font-weight: 600;
-      padding: 8px 14px;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-    .theme-toggle:hover { transform: translateY(-1px); border-color: var(--primary); }
 
     .hero { padding: 74px 0 34px; }
     .eyebrow {
@@ -202,7 +180,20 @@
       50% { transform: translateY(-2px); }
     }
     @media (max-width: 640px) {
-      .nav-bar { align-items: flex-start; padding: 12px 0; flex-direction: column; }
+      .nav-bar {
+        min-height: auto;
+        padding: 8px 0 10px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      nav {
+        width: 100%;
+        gap: 10px 14px;
+      }
+      nav a {
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
@@ -215,14 +206,11 @@
     <div class="container nav-bar">
       <a href="#home" class="brand">Portfolio</a>
       <nav>
-        <a href="#about">About</a>
-        <a href="#impact">Impact</a>
         <a href="#projects">AI Projects</a>
         <a href="#experience">Experience</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
       </nav>
-      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">Light</button>
     </div>
   </header>
 
@@ -420,28 +408,6 @@
     };
     setHeaderOffset();
     window.addEventListener("resize", setHeaderOffset);
-
-    const themeToggle = document.getElementById("theme-toggle");
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "light") document.body.setAttribute("data-theme", "light");
-    if (themeToggle) {
-      const setToggleText = () => {
-        const isLight = document.body.getAttribute("data-theme") === "light";
-        themeToggle.textContent = isLight ? "Dark" : "Light";
-      };
-      setToggleText();
-      themeToggle.addEventListener("click", () => {
-        const isLight = document.body.getAttribute("data-theme") === "light";
-        if (isLight) {
-          document.body.removeAttribute("data-theme");
-          localStorage.setItem("theme", "dark");
-        } else {
-          document.body.setAttribute("data-theme", "light");
-          localStorage.setItem("theme", "light");
-        }
-        setToggleText();
-      });
-    }
 
     const reveals = document.querySelectorAll(".reveal");
     if (reveals.length) {
