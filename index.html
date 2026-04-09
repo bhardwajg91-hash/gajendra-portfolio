@@ -18,6 +18,7 @@
       --card: #141f3f;
       --border: #25325f;
       --max-width: 1040px;
+      --header-offset: 88px;
     }
     [data-theme="light"] {
       --bg: #f3f6ff;
@@ -29,7 +30,13 @@
       --border: #c7d2fe;
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--header-offset);
+    }
+    main[id], section[id] {
+      scroll-margin-top: var(--header-offset);
+    }
     body {
       margin: 0;
       font-family: Poppins, Arial, sans-serif;
@@ -404,6 +411,15 @@
   <script>
     const yearEl = document.getElementById("year");
     if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    const headerEl = document.querySelector(".header");
+    const setHeaderOffset = () => {
+      if (!headerEl) return;
+      const offset = Math.ceil(headerEl.offsetHeight + 12);
+      document.documentElement.style.setProperty("--header-offset", `${offset}px`);
+    };
+    setHeaderOffset();
+    window.addEventListener("resize", setHeaderOffset);
 
     const themeToggle = document.getElementById("theme-toggle");
     const savedTheme = localStorage.getItem("theme");
