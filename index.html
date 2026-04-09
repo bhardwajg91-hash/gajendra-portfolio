@@ -28,6 +28,9 @@
     main[id], section[id] {
       scroll-margin-top: calc(var(--header-offset) + 8px);
     }
+    main {
+      padding-bottom: 120px;
+    }
     body {
       margin: 0;
       font-family: Poppins, Arial, sans-serif;
@@ -64,10 +67,27 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
+      padding: 6px 0;
     }
     .brand { color: var(--text); font-weight: 800; text-decoration: none; }
-    nav { display: flex; gap: 14px; flex-wrap: wrap; }
-    nav a { color: var(--muted); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+    nav {
+      display: flex;
+      gap: 12px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    nav::-webkit-scrollbar { display: none; }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      white-space: nowrap;
+      flex: 0 0 auto;
+      padding: 6px 0;
+    }
     nav a:hover { color: var(--text); }
 
     .hero { padding: 74px 0 34px; }
@@ -182,18 +202,26 @@
     @media (max-width: 640px) {
       .nav-bar {
         min-height: auto;
-        padding: 8px 0 10px;
+        padding: 8px 0;
         flex-direction: column;
         align-items: flex-start;
-        gap: 8px;
+        gap: 6px;
       }
+      .brand { font-size: 0.95rem; }
       nav {
         width: 100%;
-        gap: 10px 14px;
+        gap: 10px;
+        padding-bottom: 3px;
       }
       nav a {
         font-size: 0.9rem;
+        padding: 6px 10px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.03);
       }
+      .section { padding: 48px 0; }
+      .hero { padding-top: 58px; }
     }
   </style>
 </head>
@@ -409,15 +437,23 @@
     setHeaderOffset();
     window.addEventListener("resize", setHeaderOffset);
 
-    const scrollToHash = (hash, updateHistory = true) => {
+    const scrollToHash = (hash) => {
       const id = hash.replace("#", "");
       if (!id) return;
       const target = document.getElementById(id);
       if (!target) return;
       const headerHeight = headerEl ? headerEl.offsetHeight : 0;
-      const y = target.getBoundingClientRect().top + window.scrollY - headerHeight - 12;
-      window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
-      if (updateHistory) history.pushState(null, "", `#${id}`);
+      const rawY = target.getBoundingClientRect().top + window.scrollY - headerHeight - 12;
+      const maxY = document.documentElement.scrollHeight - window.innerHeight;
+      const y = Math.min(maxY, Math.max(0, rawY));
+      window.scrollTo({ top: y, behavior: "smooth" });
+      // Second pass ensures correct alignment after dynamic layout changes on mobile.
+      window.setTimeout(() => {
+        const correctedRawY = target.getBoundingClientRect().top + window.scrollY - (headerEl ? headerEl.offsetHeight : 0) - 12;
+        const correctedMaxY = document.documentElement.scrollHeight - window.innerHeight;
+        const correctedY = Math.min(correctedMaxY, Math.max(0, correctedRawY));
+        window.scrollTo({ top: correctedY, behavior: "auto" });
+      }, 260);
     };
 
     const internalLinks = document.querySelectorAll('a[href^="#"]');
@@ -433,8 +469,11 @@
     });
 
     if (window.location.hash) {
-      requestAnimationFrame(() => scrollToHash(window.location.hash, false));
+      history.replaceState(null, "", window.location.pathname + window.location.search);
     }
+    window.addEventListener("load", () => {
+      window.scrollTo({ top: 0, behavior: "auto" });
+    });
 
     const reveals = document.querySelectorAll(".reveal");
     if (reveals.length) {
