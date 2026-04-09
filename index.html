@@ -1,275 +1,444 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gajendra Sharma | AI Fintech Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gajendra Sharma - AI-enabled fintech operations specialist with 11+ years in affordability, EMI, offer reconciliation, and settlement.">
+  <title>Gajendra Sharma | AI Fintech Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --text: #e8ecff;
+      --muted: #b5c1f0;
+      --primary: #7f9cff;
+      --primary-strong: #5f83ff;
+      --card: #141f3f;
+      --border: #25325f;
+      --max-width: 1040px;
+    }
+    [data-theme="light"] {
+      --bg: #f3f6ff;
+      --text: #0f172a;
+      --muted: #475569;
+      --primary: #4f46e5;
+      --primary-strong: #0284c7;
+      --card: #ffffff;
+      --border: #c7d2fe;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Poppins, Arial, sans-serif;
+      background: radial-gradient(circle at 20% -10%, #1b2a63 0%, var(--bg) 45%);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    .container { width: min(92%, var(--max-width)); margin: 0 auto; }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(70px);
+      z-index: -1;
+      opacity: 0.26;
+      animation: floatOrb 14s ease-in-out infinite;
+    }
+    .orb-1 { width: 280px; height: 280px; top: -90px; left: -60px; background: #4f46e5; }
+    .orb-2 { width: 260px; height: 260px; right: -80px; top: 160px; background: #0891b2; animation-delay: -5s; }
+    .orb-3 { width: 220px; height: 220px; right: 28%; bottom: -80px; background: #22c55e; animation-delay: -9s; }
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11, 16, 32, 0.86);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+    }
+    .nav-bar {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .brand { color: var(--text); font-weight: 800; text-decoration: none; }
+    nav { display: flex; gap: 18px; flex-wrap: wrap; }
+    nav a { color: var(--muted); text-decoration: none; font-weight: 500; }
+    nav a:hover { color: var(--text); }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #0f172a, #020617);
-    color: white;
-}
+    .theme-toggle {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      border-radius: 999px;
+      font-family: inherit;
+      font-weight: 600;
+      padding: 8px 14px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .theme-toggle:hover { transform: translateY(-1px); border-color: var(--primary); }
 
-nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 40px;
-    backdrop-filter: blur(10px);
-}
+    .hero { padding: 74px 0 34px; }
+    .eyebrow {
+      color: var(--primary);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+    h1 {
+      margin: 8px 0 10px;
+      font-size: clamp(1.8rem, 3.8vw, 3rem);
+      line-height: 1.2;
+      max-width: 20ch;
+    }
+    .lead { color: var(--muted); max-width: 68ch; }
+    .hero-cta { margin: 26px 0; display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(79, 70, 229, 0.25); }
+    .btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-strong)); color: white; }
+    .btn-secondary { border: 1px solid var(--border); color: var(--text); background: rgba(255, 255, 255, 0.02); }
 
-nav h2 {
-    color: #38bdf8;
-}
+    .quick-facts {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .quick-facts article,
+    .card,
+    .timeline-item {
+      background: rgba(20, 31, 63, 0.82);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      transition: transform 0.22s ease, border-color 0.22s ease;
+    }
+    .quick-facts article:hover,
+    .card:hover,
+    .timeline-item:hover {
+      transform: translateY(-3px);
+      border-color: var(--primary);
+    }
+    .quick-facts h3 { margin: 0; font-size: 1.25rem; }
+    .quick-facts p { margin: 6px 0 0; color: var(--muted); }
 
-.hero {
-    text-align: center;
-    padding: 80px 20px;
-}
+    .section { padding: 54px 0; }
+    .section h2 { margin-top: 0; font-size: 1.6rem; }
+    .section p { color: var(--muted); }
+    .section-alt { background: rgba(255, 255, 255, 0.02); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .grid { display: grid; gap: 14px; }
+    .cards-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .cards-2 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .metric { color: #22c55e; font-size: 1.8rem; margin: 0; }
+    .timeline { display: grid; gap: 14px; }
+    .timeline-item h3 { margin: 0 0 6px; }
+    .meta { margin: 0 0 10px; color: var(--primary); font-weight: 600; }
+    .timeline-item ul { margin: 0; padding-left: 18px; }
+    .timeline-item li { margin: 6px 0; color: var(--muted); }
 
-.hero h1 {
-    font-size: 48px;
-}
+    .skills-list { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skill-chip {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      font-size: 0.95rem;
+      animation: chipPulse 5s ease-in-out infinite;
+    }
+    .skill-chip:nth-child(2n) { animation-delay: -2s; }
+    .skill-chip:nth-child(3n) { animation-delay: -3s; }
 
-.hero p {
-    margin-top: 15px;
-    color: #94a3b8;
-}
+    .contact { text-align: center; }
+    .contact-links { margin-top: 14px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .contact-links a {
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 9px 12px;
+      border-radius: 8px;
+      transition: transform 0.2s ease;
+    }
+    .contact-links a:hover { transform: translateY(-2px); border-color: var(--primary); }
+    .footer { border-top: 1px solid var(--border); padding: 18px 0 22px; color: var(--muted); text-align: center; }
 
-.btn {
-    margin-top: 25px;
-    padding: 12px 25px;
-    background: linear-gradient(135deg, #6366f1, #06b6d4);
-    border: none;
-    border-radius: 25px;
-    color: white;
-    cursor: pointer;
-    transition: 0.3s;
-}
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.62s ease, transform 0.62s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.btn:hover {
-    transform: scale(1.05);
-}
-
-section {
-    padding: 60px 20px;
-    max-width: 1100px;
-    margin: auto;
-}
-
-h2 {
-    margin-bottom: 20px;
-    color: #38bdf8;
-}
-
-.card {
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(10px);
-    padding: 20px;
-    border-radius: 15px;
-    margin: 15px 0;
-    transition: 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-    gap: 20px;
-}
-
-.metric {
-    text-align: center;
-    font-size: 28px;
-    font-weight: bold;
-    color: #22c55e;
-}
-
-footer {
-    text-align: center;
-    padding: 20px;
-    background: #020617;
-    color: #94a3b8;
-}
-</style>
+    @keyframes floatOrb {
+      0%, 100% { transform: translateY(0) translateX(0); }
+      50% { transform: translateY(16px) translateX(10px); }
+    }
+    @keyframes chipPulse {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-2px); }
+    }
+    @media (max-width: 640px) {
+      .nav-bar { align-items: flex-start; padding: 12px 0; flex-direction: column; }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
 
-<nav>
-    <h2>Portfolio</h2>
-    <p>Gajendra Sharma</p>
-</nav>
+  <header class="header">
+    <div class="container nav-bar">
+      <a href="#home" class="brand">Portfolio</a>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#impact">Impact</a>
+        <a href="#projects">AI Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">Light</button>
+    </div>
+  </header>
 
-<div class="hero">
-    <h1>AI-Enabled Fintech Operations Specialist</h1>
-    <p>Driving Process Transformation through GenAI, Automation & Data-Driven Operations</p>
-    <button class="btn" onclick="scrollToSection()">Explore My Work</button>
-</div>
+  <main id="home">
+    <section class="hero container reveal">
+      <p class="eyebrow">Gajendra Sharma</p>
+      <h1>AI-Enabled Fintech Operations Specialist</h1>
+      <p class="lead">
+        Driving process transformation through GenAI, automation, and data-driven operations.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#projects">Explore My Work</a>
+        <a class="btn btn-secondary" href="#contact">Connect With Me</a>
+      </div>
+      <div class="quick-facts">
+        <article>
+          <h3>11+ Years</h3>
+          <p>In fintech operations and payments ecosystem</p>
+        </article>
+        <article>
+          <h3>40% Efficiency</h3>
+          <p>Operational efficiency improvement through AI automation</p>
+        </article>
+        <article>
+          <h3>GenAI</h3>
+          <p>Enabled workflow automation and decision support</p>
+        </article>
+      </div>
+    </section>
 
-<section>
-    <h2>🚀 About Me</h2>
-    <div class="card">
+    <section id="about" class="section reveal">
+      <div class="container">
+        <h2>About Me</h2>
         <p>
-            Assistant Manager at PayU with 11+ years of experience in fintech operations,
-            specializing in affordability, EMI ecosystem, and merchant lifecycle management.
+          Assistant Manager at PayU with 11+ years of experience in fintech operations, specializing
+          in affordability, EMI ecosystem, and merchant lifecycle management.
         </p>
-        <br>
         <p>
-            Leveraging <b>Generative AI and automation</b> to streamline operational workflows,
-            enhance reconciliation accuracy, and enable faster decision-making.
+          I leverage Generative AI and automation to streamline workflows, improve reconciliation accuracy,
+          and enable faster business decisions. Delivered a 40% improvement in operational efficiency
+          through AI-assisted execution and data-driven problem solving.
         </p>
-        <br>
-        <p>
-            Delivered <b>40% improvement in operational efficiency</b> through AI-assisted execution,
-            workflow optimization, and data-driven problem solving.
-        </p>
-    </div>
-</section>
+      </div>
+    </section>
 
-<section>
-    <h2>📊 Impact</h2>
-    <div class="grid">
-        <div class="card">
-            <div class="metric">40%</div>
-            <p>Operational Efficiency Improvement</p>
+    <section id="impact" class="section section-alt reveal">
+      <div class="container">
+        <h2>Impact</h2>
+        <div class="grid cards-3">
+          <article class="card">
+            <h3 class="metric">40%</h3>
+            <p>Operational efficiency improvement</p>
+          </article>
+          <article class="card">
+            <h3 class="metric">11+</h3>
+            <p>Years in fintech operations</p>
+          </article>
+          <article class="card">
+            <h3 class="metric">E2E</h3>
+            <p>Offer reconciliation and settlement ownership</p>
+          </article>
         </div>
-        <div class="card">
-            <div class="metric">11+</div>
-            <p>Years in Fintech Operations</p>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="container">
+        <h2>AI Capabilities</h2>
+        <div class="grid cards-2">
+          <article class="card">Generative AI for business operations</article>
+          <article class="card">AI-assisted workflow automation</article>
+          <article class="card">Prompt engineering for operations</article>
+          <article class="card">Data-driven decision support</article>
         </div>
-        <div class="card">
-            <div class="metric">GenAI</div>
-            <p>Enabled Workflow Automation & Decision Support</p>
+      </div>
+    </section>
+
+    <section id="projects" class="section section-alt reveal">
+      <div class="container">
+        <h2>AI Projects and Use Cases</h2>
+        <div class="timeline">
+          <article class="timeline-item">
+            <h3>AI-Driven Offer Validation and Configuration</h3>
+            <ul>
+              <li>Used GenAI to validate EMI offers, pricing logic, and campaign rules.</li>
+              <li>Automated eligibility checks and reduced manual configuration errors.</li>
+              <li>Improved offer go-live accuracy and operational efficiency.</li>
+            </ul>
+          </article>
+          <article class="timeline-item">
+            <h3>AI-Assisted Reconciliation Automation</h3>
+            <ul>
+              <li>Streamlined reconciliation across banks and merchants using AI tools.</li>
+              <li>Automated mismatch detection and exception tracking.</li>
+              <li>Reduced reconciliation turnaround time and improved accuracy.</li>
+            </ul>
+          </article>
+          <article class="timeline-item">
+            <h3>Settlement Optimization Using AI</h3>
+            <ul>
+              <li>Improved settlement workflows through AI-assisted data validation.</li>
+              <li>Automated settlement tracking between PayU, banks, and merchants.</li>
+              <li>Reduced discrepancies and accelerated closure cycles.</li>
+            </ul>
+          </article>
+          <article class="timeline-item">
+            <h3>AI-Powered MIS and Reporting</h3>
+            <ul>
+              <li>Automated MIS reporting and operational dashboards.</li>
+              <li>Enabled faster business insights and decision-making.</li>
+              <li>Reduced manual effort in reporting and analysis.</li>
+            </ul>
+          </article>
         </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section reveal">
+      <div class="container">
+        <h2>Experience</h2>
+        <div class="timeline">
+          <article class="timeline-item">
+            <h3>PayU Payments Pvt. Ltd.</h3>
+            <p class="meta">Assistant Manager | Jul 2022 - Present</p>
+            <ul>
+              <li>End-to-end affordability offer configuration, reconciliation, and settlement support.</li>
+              <li>Managed bank and merchant financial operations for offer programs.</li>
+              <li>Led EMI campaign operations and partner onboarding coordination.</li>
+            </ul>
+          </article>
+          <article class="timeline-item">
+            <h3>Paytm (India) Pvt. Ltd.</h3>
+            <p class="meta">Junior Manager - Operations | Jul 2021 - Jul 2022</p>
+            <ul>
+              <li>Owned merchant onboarding and customer support operations.</li>
+              <li>Handled POS setup, TID/MID configuration, and backend integration.</li>
+            </ul>
+          </article>
+          <article class="timeline-item">
+            <h3>Pine Labs (India) Pvt. Ltd.</h3>
+            <p class="meta">Team Lead - Operations / EDC | Jan 2014 - Jul 2021</p>
+            <ul>
+              <li>Led a 20-member operations team and large-scale deployments.</li>
+              <li>Managed OEM/payment setup for UPI, DCC, Bank EMI, and merchant onboarding.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section section-alt reveal">
+      <div class="container">
+        <h2>Skills</h2>
+        <div class="skills-list">
+          <span class="skill-chip">Financial Operations</span>
+          <span class="skill-chip">Offer Configuration</span>
+          <span class="skill-chip">Reconciliation and Settlement</span>
+          <span class="skill-chip">AI Tools and Automation</span>
+          <span class="skill-chip">Payment Gateways</span>
+          <span class="skill-chip">Stakeholder Management</span>
+          <span class="skill-chip">BNPL and EMI</span>
+          <span class="skill-chip">Process Optimization</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section reveal">
+      <div class="container contact">
+        <h2>Contact</h2>
+        <p>Open to fintech operations, AI-automation, and payment ecosystem opportunities.</p>
+        <div class="contact-links">
+          <a href="mailto:bhardwajg91@gmail.com">bhardwajg91@gmail.com</a>
+          <a href="tel:+919015043172">+91 90150 43172</a>
+          <a href="https://www.linkedin.com/in/gajendra-kumar-sharma-b63b7866/" target="_blank" rel="noreferrer">LinkedIn Profile</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="year"></span> Gajendra Sharma | Portfolio</p>
     </div>
-</section>
+  </footer>
 
-<section>
-    <h2>🤖 AI Capabilities</h2>
-    <div class="grid">
-        <div class="card">Generative AI for Business Operations</div>
-        <div class="card">AI-Assisted Workflow Automation</div>
-        <div class="card">Prompt Engineering for Operations</div>
-        <div class="card">Data-Driven Decision Support</div>
-    </div>
-</section>
+  <script>
+    const yearEl = document.getElementById("year");
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-<section>
-    <h2>🧠 AI Projects & Use Cases</h2>
+    const themeToggle = document.getElementById("theme-toggle");
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "light") document.body.setAttribute("data-theme", "light");
+    if (themeToggle) {
+      const setToggleText = () => {
+        const isLight = document.body.getAttribute("data-theme") === "light";
+        themeToggle.textContent = isLight ? "Dark" : "Light";
+      };
+      setToggleText();
+      themeToggle.addEventListener("click", () => {
+        const isLight = document.body.getAttribute("data-theme") === "light";
+        if (isLight) {
+          document.body.removeAttribute("data-theme");
+          localStorage.setItem("theme", "dark");
+        } else {
+          document.body.setAttribute("data-theme", "light");
+          localStorage.setItem("theme", "light");
+        }
+        setToggleText();
+      });
+    }
 
-    <div class="card">
-        <h3>AI-Driven Offer Validation & Configuration</h3>
-        <ul>
-            <li>Used Generative AI to validate EMI offers, pricing logic, and campaign rules</li>
-            <li>Automated eligibility checks and reduced manual configuration errors</li>
-            <li>Improved offer go-live accuracy and operational efficiency</li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <h3>AI-Assisted Reconciliation Automation</h3>
-        <ul>
-            <li>Streamlined reconciliation across banks and merchants using AI tools</li>
-            <li>Automated mismatch detection and exception tracking</li>
-            <li>Reduced reconciliation turnaround time and improved accuracy</li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <h3>Settlement Optimization using AI</h3>
-        <ul>
-            <li>Improved settlement workflows through AI-assisted data validation</li>
-            <li>Automated settlement tracking between PayU, banks, and merchants</li>
-            <li>Reduced discrepancies and faster financial closure cycles</li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <h3>AI-Powered MIS & Reporting</h3>
-        <ul>
-            <li>Automated MIS reporting and operational dashboards using AI tools</li>
-            <li>Enabled faster business insights and decision-making</li>
-            <li>Reduced manual effort in reporting and data analysis</li>
-        </ul>
-    </div>
-
-</section>
-
-<section>
-    <h2>💼 Experience</h2>
-
-    <div class="card">
-        <h3>PayU Payments Pvt Ltd</h3>
-        <p>Assistant Manager</p>
-        <ul>
-            <li>End-to-end affordability reconciliation & settlement</li>
-            <li>Managing bank & merchant financial operations</li>
-            <li>EMI configuration and onboarding</li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <h3>Paytm</h3>
-        <p>Junior Manager</p>
-        <ul>
-            <li>Merchant onboarding & customer support operations</li>
-            <li>POS setup and backend integration</li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <h3>Pine Labs</h3>
-        <p>Team Lead</p>
-        <ul>
-            <li>Led 20-member operations team</li>
-            <li>Managed large-scale deployments</li>
-        </ul>
-    </div>
-
-</section>
-
-<section>
-    <h2>⚡ Skills</h2>
-    <div class="card">
-        Financial Operations | Reconciliation & Settlement | End-to-End Offer Transactions |
-        Ownership & Accountability | AI Tools | Automation | SQL | BNPL | EMI |
-        Payment Gateways | Stakeholder Management | Process Optimization
-    </div>
-</section>
-
-<section>
-    <h2>📫 Contact</h2>
-    <div class="card">
-        <p>Email: bhardwajg91@gmail.com</p>
-        <p>Phone: +91 9015043172</p>
-    </div>
-</section>
-
-<footer>
-    <p>© 2026 Gajendra Sharma | Portfolio</p>
-</footer>
-
-<script>
-function scrollToSection() {
-    window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: "smooth"
-    });
-}
-</script>
-
+    const reveals = document.querySelectorAll(".reveal");
+    if (reveals.length) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      reveals.forEach((element) => observer.observe(element));
+    }
+  </script>
 </body>
 </html>
