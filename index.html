@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gajendra Sharma | AI Fintech Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f172a, #020617);
+    color: white;
+}
+
+/* NAVBAR */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+    backdrop-filter: blur(10px);
+}
+
+nav h2 {
+    color: #38bdf8;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.hero h1 {
+    font-size: 48px;
+}
+
+.hero p {
+    margin-top: 15px;
+    color: #94a3b8;
+}
+
+.btn {
+    margin-top: 25px;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #6366f1, #06b6d4);
+    border: none;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+/* SECTION */
+section {
+    padding: 60px 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #38bdf8;
+}
+
+/* CARD */
+.card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 15px;
+    margin: 15px 0;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    gap: 20px;
+}
+
+/* METRICS */
+.metric {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #22c55e;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #020617;
+    color: #94a3b8;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <h2>AI Portfolio</h2>
+    <p>Gajendra Sharma</p>
+</nav>
+
+<div class="hero">
+    <h1>AI-Driven Fintech Operations Specialist</h1>
+    <p>Transforming Operations with AI + Automation</p>
+    <button class="btn" onclick="scrollToSection()">Explore My Work</button>
+</div>
+
+<section>
+    <h2>🚀 About Me</h2>
+    <div class="card">
+        <p>
+            Assistant Manager at PayU with 11+ years of experience in fintech operations,
+            EMI ecosystem, and merchant onboarding.
+        </p>
+        <br>
+        <p>
+            I use <b>5+ AI tools daily</b> to automate workflows and improve productivity,
+            achieving <b>40% efficiency improvement</b> in operations.
+        </p>
+    </div>
+</section>
+
+<section>
+    <h2>📊 Impact</h2>
+    <div class="grid">
+        <div class="card">
+            <div class="metric">40%</div>
+            <p>Efficiency Improved</p>
+        </div>
+        <div class="card">
+            <div class="metric">11+</div>
+            <p>Years Experience</p>
+        </div>
+        <div class="card">
+            <div class="metric">5+</div>
+            <p>AI Tools Used Daily</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>🤖 AI Capabilities</h2>
+    <div class="grid">
+        <div class="card">AI Workflow Automation</div>
+        <div class="card">Prompt Engineering</div>
+        <div class="card">AI for Reporting & Analysis</div>
+        <div class="card">Process Optimization using AI</div>
+    </div>
+</section>
+
+<section>
+    <h2>💼 Experience</h2>
+
+    <div class="card">
+        <h3>PayU Payments Pvt Ltd</h3>
+        <p>Assistant Manager</p>
+        <ul>
+            <li>End-to-end affordability recon & settlement</li>
+            <li>Handling banks & merchant settlements</li>
+            <li>EMI configuration & onboarding</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h3>Paytm</h3>
+        <p>Junior Manager</p>
+        <ul>
+            <li>Merchant onboarding & customer support</li>
+            <li>POS setup & backend integration</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h3>Pine Labs</h3>
+        <p>Team Lead</p>
+        <ul>
+            <li>Led 20-member operations team</li>
+            <li>Managed large-scale deployments</li>
+        </ul>
+    </div>
+
+</section>
+
+<section>
+    <h2>⚡ Skills</h2>
+    <div class="card">
+            Financial Operations | Reconciliation & Settlement | End-to-End Offer Transactions |
+        Ownership & Accountability | AI Tools | Automation | SQL | BNPL | EMI |
+        Payment Gateways | Stakeholder Management | Process Optimization
+    </div>
+</section>
+
+<section>
+    <h2>📫 Contact</h2>
+    <div class="card">
+        <p>Email: bhardwajg91@gmail.com</p>
+        <p>Phone: +91 9015043172</p>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Gajendra Sharma | AI Portfolio</p>
+</footer>
+
+<script>
+function scrollToSection() {
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth"
+    });
+}
+</script>
+
+</body>
+</html>
